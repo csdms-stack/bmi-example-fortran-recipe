@@ -1,0 +1,42 @@
+{% set name = "bmi-example-fortran" %}
+{% set version = "2.0" %}
+{% set build_number = "0" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  git_url: https://github.com/csdms/{{ name }}
+  git_rev: v{{ version }}
+
+build:
+  number: {{ build_number }}
+
+requirements:
+  build:
+    - cmake
+    - make
+    - {{ compiler('fortran') }}
+  host:
+    - bmi-fortran
+  run:
+    - bmi-fortran
+
+test:
+  commands:
+    - test -x $PREFIX/bin/run_bmiheatf
+    - test -x $PREFIX/lib/libbmiheatf$SHLIB_EXT
+    - test -f $PREFIX/include/bmiheatf.mod
+
+about:
+  home: https://github.com/csdms/bmi-example-fortran
+  license: MIT
+  license_file: LICENSE
+  summary: Sample implementation of Fortran BMI specification
+  description: |
+    This is an example of implementing a BMI for a simple model that
+    solves the diffusion equation on a uniform rectangular plate with
+    Dirichlet boundary conditions. The model is written in Fortran
+    90. The BMI is written in Fortran 2003.
+  dev_url: https://github.com/csdms/bmi-example-fortran
