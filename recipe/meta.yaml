@@ -25,8 +25,8 @@ requirements:
 
 test:
   commands:
-    - test -x $PREFIX/bin/run_bmiheatf
-    - test -x $PREFIX/lib/libbmiheatf$SHLIB_EXT
+    - test -f $PREFIX/bin/run_bmiheatf
+    - test -f $PREFIX/lib/libbmiheatf$SHLIB_EXT
     - test -f $PREFIX/include/bmiheatf.mod
 
 about:
